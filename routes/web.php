@@ -11,8 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'admin'], function () {
-
+Route::middleware('auth')->prefix('admin')->group(function () {
     // Halaman Admin Dashboard
     Route::get('/', function () {
         return view('admin.dashboard');
@@ -24,3 +23,5 @@ Route::group(['prefix' => 'admin'], function () {
     // CRUD Product
     Route::resource('product', 'ProductController')->except('show');
 });
+
+Auth::routes(['reset' => false]);
