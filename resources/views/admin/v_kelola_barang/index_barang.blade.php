@@ -5,13 +5,20 @@
 	<div class="row">
 		<!-- left column -->
 		<div class="col-md-12">
+            @if (session('status'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Berhasil!</h4>
+                {{ session('status') }}
+            </div>
+            @endif
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box">
 					<div class="box-header">
 						<h3 class="box-title">Kelola Barang</h3><br>
 						<div align="right" >
-							<input type="submit" class="btn btn-primary" value="Tambahkan Barang" name="Add">
+                            <a href="{{ route('product.create') }}" class="btn btn-primary">Tambahkan Barang</a>
 						</div>
 					</div>
 
@@ -20,134 +27,46 @@
 						<table id="example"  class="table table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>First name</th>
-									<th>Last name</th>
-									<th>Position</th>
-									<th>Office</th>
-									<th>Salary</th>
+									<th>#</th>
+									<th>Nama Barang</th>
+									<th>Jlh Stock</th>
+									<th>Harga</th>
+									<th>Deskripsi</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
+                                @foreach ($products as $product)
 								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>110</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>109</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>5</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>20</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>60</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>50</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>10</td>
-								</tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $product->name }}</td>
+									<td>{{ $product->stock }}</td>
+									<td>Rp. {{ number_format($product->price, 0, ',', '.') }}</td>
+									<td>{{ $product->description }}</td>
+									<td>
+                                        <a href="{{ route('product.edit', $product->id) }}" class="text-primary">
+                                            <i class="fa fa-fw2x fa-pencil"></i>
+                                        </a>
+                                        <a href="{{ route('product.destroy', $product->id) }}" class="text-danger"
+                                            onclick="event.preventDefault();
+                                                document.getElementById('prod-destroy-{{ $product->id }}').submit();">
+                                            <i class="fa fa-fw fa-trash"></i>
+                                        </a>
 
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>16</td>
+                                        <form id="prod-destroy-{{ $product->id }}" hidden action="{{ route('product.destroy', $product->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                        </form>
+                                    </td>
 								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>110</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>2210</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>Tiger</td>
-									<td>Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>220</td>
-								</tr>
+                                @endforeach
 							</tbody>
-							<tfoot>
+							{{-- <tfoot>
 								<tr>
-									<th colspan="4" style="text-align:right">Total:</th>
-									<th></th>
+									<th colspan="4" style="text-align:right">Total: </th>
+									<th colspan="2"></th>
 								</tr>
-							</tfoot>
+							</tfoot> --}}
 						</table>
 					</div>
 					<!-- /.box-body -->

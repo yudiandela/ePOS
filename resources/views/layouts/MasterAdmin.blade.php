@@ -339,6 +339,11 @@
       </a>
     </li>
   <li class="">
+    <a href="{{ route('product.index') }}">
+      <i class="fa fa-archive"></i> <span>Kelola Barang</span>
+      </a>
+  </li>
+  <li class="">
     <a href="{{ route('category.index') }}">
       <i class="fa fa-folder-o"></i> <span>Kelola Kategori</span>
       </a>

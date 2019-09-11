@@ -20,4 +20,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     // CRUD Category
     Route::resource('category', 'CategoryController')->except('show');
+
+    // CRUD Product
+    Route::resource('product', 'ProductController')->except('show');
 });
