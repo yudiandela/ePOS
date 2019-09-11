@@ -11,19 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin.dashboard');
-});
+Route::group(['prefix' => 'admin'], function () {
 
-Route::get('/Barang', function () {
-    return view('admin/v_kelola_barang/index_barang');
-});
+    // Halaman Admin Dashboard
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('index');
 
-Route::get('/Pesanan', function () {
-    return view('admin/v_kelola_pesanan/index_pesanan');
+    // CRUD Category
+    Route::resource('category', 'CategoryController')->except('show');
 });
-
-Route::get('/Pelanggan', function () {
-    return view('admin/v_pelanggan/index_pelanggan');
-});
-
