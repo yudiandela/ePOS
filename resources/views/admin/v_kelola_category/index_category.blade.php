@@ -35,7 +35,7 @@
 
 					<!-- /.box-header -->
 					<div class="box-body">
-						<table id="example"  class="table table-bordered table-striped">
+						<table id="example" class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>#</th>
@@ -51,13 +51,13 @@
 									<td>{{ $category->name }}</td>
 									<td>{{ $category->slug }}</td>
 									<td>
-                                        <a href="{{ route('category.edit', $category->id) }}" class="text-primary">
-                                            <i class="fa fa-fw2x fa-pencil"></i>
+                                        <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary btn-xs">
+                                            <i class="fa fa-pencil"></i>
                                         </a>
-                                        <a href="{{ route('category.destroy', $category->id) }}" class="text-danger"
+                                        <a href="{{ route('category.destroy', $category->id) }}" class="btn btn-danger btn-xs"
                                             onclick="event.preventDefault();
                                                      document.getElementById('cat-destroy-{{ $category->id }}').submit();">
-                                            <i class="fa fa-fw fa-trash"></i>
+                                            <i class="fa fa-trash"></i>
                                         </a>
 
                                         <form id="cat-destroy-{{ $category->id }}" hidden action="{{ route('category.destroy', $category->id) }}" method="post">

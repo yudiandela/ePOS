@@ -39,6 +39,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     // CRUD Product
     Route::resource('product', 'ProductController')->except('show');
+
+    // CRUD Users
+    Route::resource('user', 'UserController')->except('show');
 });
 
 // Routing untuk login dan register

@@ -111,12 +111,24 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('status', 'Berhasil menghapus data barang');
     }
 
+    /**
+     * get All product on the front shop
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function showAllProductInShop(Product $product)
     {
-        $products = $product->orderBy('id', 'DESC')->get();
+        $products = $product->orderBy('id', 'DESC')->paginate(8);
         return view('shop.home', compact('products'));
     }
 
+    /**
+     * Get Detail from the single product
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function showDetailProductInShop(Product $product)
     {
         return view('shop.product', compact('product'));

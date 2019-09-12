@@ -330,13 +330,13 @@
       <i class="fa fa-folder-o"></i> <span>Kelola Kategori</span>
       </a>
   </li>
-  <li class="">
-      <a href="/Pesanan">
+  {{-- <li class="">
+      <a href="/order">
         <i class="fa fa-users"></i> <span>Kelola Pesanan</span>
         </a>
-    </li>
+    </li> --}}
       <li class="">
-      <a href="/Pelanggan">
+      <a href="{{ route('user.index') }}">
         <i class="fa fa-users"></i> <span>Kelola Pelanggan</span>
         </a>
     </li>

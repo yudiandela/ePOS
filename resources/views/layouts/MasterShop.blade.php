@@ -82,9 +82,9 @@
 
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a href="{{ route('shop.cart') }}" class="nav-link waves-effect">
-              <span class="badge red z-depth-1 mr-1"> 1 </span>
+          <li class="nav-item mx-2">
+            <a href="{{ route('shop.cart') }}" class="nav-link border border-light rounded waves-effect">
+              {{-- <span class="badge red z-depth-1 mr-1"> 1 </span> --}}
               <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
             </a>
@@ -98,13 +98,28 @@
             <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect">
               <i class="fab fa-twitter"></i>
             </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link border border-light rounded waves-effect"
-            >
-              </i>Konfirmasi Pembayaran
-            </a>
           </li> --}}
+          @auth
+            <li class="nav-item mx-2">
+              <a href="{{ route('index') }}" class="nav-link border border-primary bg-primary rounded waves-effect text-light">
+                <i class="fas fa-home"></i> Dashboard
+              </a>
+            </li>
+          @endauth
+
+          @guest
+          <li class="nav-item mx-2">
+            <a href="{{ route('login') }}" class="nav-link border border-primary rounded waves-effect text-primary">
+              <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+          </li>
+
+          <li class="nav-item mx-2">
+            <a href="{{ route('register') }}" class="nav-link border border-primary bg-primary rounded waves-effect text-light">
+              <i class="fas fa-user"></i> new User
+            </a>
+          </li>
+          @endguest
         </ul>
 
       </div>
