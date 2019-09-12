@@ -84,7 +84,11 @@
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item mx-2">
             <a href="{{ route('shop.cart') }}" class="nav-link border border-light rounded waves-effect">
-              {{-- <span class="badge red z-depth-1 mr-1"> 1 </span> --}}
+                {{-- @php $total = 0 @endphp
+                @foreach((array) session('cart') as $id => $details)
+                    @php $total += $details['price'] * $details['quantity'] @endphp
+                @endforeach --}}
+              <span class="badge red z-depth-1 mr-1"> {{ count((array) session('cart')) }} </span>
               <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
             </a>
@@ -208,6 +212,8 @@
     new WOW().init();
 
   </script>
+
+  @stack('scripts')
 </body>
 
 </html>

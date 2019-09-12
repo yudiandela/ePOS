@@ -18,9 +18,10 @@ Route::name('shop.')->group(function () {
     // Halaman detail product
     Route::get('/product/{product}', 'ProductController@showDetailProductInShop')->name('detail.product');
 
-    Route::get('/cart', function () {
-        return view('shop.cart');
-    })->name('cart');
+    Route::get('/cart', 'CartController@index')->name('cart');
+    Route::post('/cart/{id}', 'CartController@addToCart')->name('add.cart');
+    Route::patch('/update-cart', 'CartController@update');
+    Route::delete('/remove-from-cart', 'CartController@remove');
 
     Route::get('/checkout', function () {
         return view('shop.checkout');

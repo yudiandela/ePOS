@@ -45,9 +45,10 @@
 
             <p>{{ $product->description }}</p>
 
-            <form class="d-flex justify-content-left">
+            <form action="{{ route('shop.add.cart', $product->id) }}" class="d-flex justify-content-left" method="POST">
+              @csrf
               <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+              <input type="number" value="1" name="quantity" aria-label="Search" class="form-control" style="width: 100px">
               <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>
