@@ -60,6 +60,7 @@
 
 1. Management Category
 2. Management Product
+3. Management User / Pelanggan
 
 ### Shop / User
 
