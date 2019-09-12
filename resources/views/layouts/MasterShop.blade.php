@@ -74,9 +74,9 @@
             </a>
           </li> --}}
 
-           <li class="nav-item">
+           {{-- <li class="nav-item">
             <a class="nav-link waves-effect" href="{{ route('shop.product') }}">Produk</a>
-          </li>
+          </li> --}}
 
         </ul>
 
