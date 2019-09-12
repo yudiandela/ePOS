@@ -49,11 +49,11 @@
 							<tbody>
                 @foreach ($products as $product)
 								<tr>
-                  <td>{{ $product->name }}</td>
                   <td>{{ $loop->iteration }}</td>
+                  <td>{{ $product->name }}</td>
 									<td>{{ $product->stock }}</td>
 									<td>Rp. {{ number_format($product->price, 0, ',', '.') }}</td>
-									<td>{{ $product->description }}</td>
+									<td>{{ substr($product->description, 0, 50) }}...</td>
 									<td>
                       <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary btn-xs">
                           <i class="fa fa-pencil"></i>
