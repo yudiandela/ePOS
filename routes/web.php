@@ -12,18 +12,15 @@
 */
 
 Route::name('shop.')->group(function () {
+    // Halaman home
+    Route::get('/', 'ProductController@showAllProductInShop')->name('index');
 
-    Route::get('/', function () {
-        return view('shop.home');
-    })->name('index');
+    // Halaman detail product
+    Route::get('/product/{product}', 'ProductController@showDetailProductInShop')->name('detail.product');
 
     Route::get('/cart', function () {
         return view('shop.cart');
     })->name('cart');
-
-    Route::get('/product', function () {
-        return view('shop.product');
-    })->name('product');
 
     Route::get('/checkout', function () {
         return view('shop.checkout');

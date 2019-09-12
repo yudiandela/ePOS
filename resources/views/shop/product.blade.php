@@ -10,7 +10,7 @@
 
         <!--Grid column-->
         <div class="col-md-6 mb-4">
-
+          <h4>{{ $product->name }}</h4>
           <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
 
         </div>
@@ -23,29 +23,27 @@
           <div class="p-4">
 
             <div class="mb-3">
-              <a href="">
-                <span class="badge purple mr-1">Category 2</span>
+              <a href="#">
+                <span class="badge purple mr-1">{{ $product->category->name }}</span>
               </a>
-              <a href="">
+              {{-- <a href="">
                 <span class="badge blue mr-1">New</span>
-              </a>
-              <a href="">
+              </a> --}}
+              {{-- <a href="">
                 <span class="badge red mr-1">Bestseller</span>
-              </a>
+              </a> --}}
             </div>
 
             <p class="lead">
-              <span class="mr-1">
+              {{-- <span class="mr-1">
                 <del>$200</del>
-              </span>
-              <span>$100</span>
+              </span> --}}
+              <span>Rp. {{ number_format($product->price, 2, ',', '.') }}</span>
             </p>
 
             <p class="lead font-weight-bold">Description</p>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa
-              sint voluptatibus!
-              Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
+            <p>{{ $product->description }}</p>
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->

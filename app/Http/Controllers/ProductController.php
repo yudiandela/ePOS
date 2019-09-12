@@ -110,4 +110,15 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('product.index')->with('status', 'Berhasil menghapus data barang');
     }
+
+    public function showAllProductInShop(Product $product)
+    {
+        $products = $product->orderBy('id', 'DESC')->get();
+        return view('shop.home', compact('products'));
+    }
+
+    public function showDetailProductInShop(Product $product)
+    {
+        return view('shop.product', compact('product'));
+    }
 }
