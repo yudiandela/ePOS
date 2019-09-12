@@ -26,7 +26,23 @@
     php artisan key:generate
     ```
 
--   Lalu import Dummy database untuk kategori dengan perintah :
+-   Lalu jalankan perintah untuk generate seluruh database :
+
+    ```
+    php artisan migrate
+    ```
+
+    Catatan :
+
+    Jika database sudah pernah di migrate maka jalankan :
+
+    ```
+    php artisan migrate:fresh
+    ```
+
+    untuk menghapus seluruh database yang sudah ada dan diganti dengan database yang ada di file `database/migrations`
+
+-   Lalu import dummy database untuk kategori dengan perintah :
 
     ```
     php artisan db:seed
