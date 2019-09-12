@@ -11,7 +11,21 @@
 |
 */
 
-Route::middleware('auth')->group(function () {
+Route::get('/', function () {
+    return view('shop.home');
+});
+
+Route::get('/cart', function () {
+    return view('shop.cart');
+});
+
+Route::get('/checkout', function () {
+    return view('shop.checkout');
+});
+
+
+
+Route::middleware('auth')->prefix('admin')->group(function () {
     // Halaman Admin Dashboard
     Route::get('/', function () {
         return view('admin.dashboard');
@@ -23,5 +37,8 @@ Route::middleware('auth')->group(function () {
     // CRUD Product
     Route::resource('product', 'ProductController')->except('show');
 });
+
+
+
 
 Auth::routes(['reset' => false]);
