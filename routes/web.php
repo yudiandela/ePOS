@@ -11,20 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('shop.home');
+Route::name('shop.')->group(function () {
+
+    Route::get('/', function () {
+        return view('shop.home');
+    })->name('index');
+
+    Route::get('/cart', function () {
+        return view('shop.cart');
+    })->name('cart');
+
+    Route::get('/product', function () {
+        return view('shop.product');
+    })->name('product');
+
+    Route::get('/checkout', function () {
+        return view('shop.checkout');
+    })->name('checkout');
 });
 
-Route::get('/cart', function () {
-    return view('shop.cart');
-});
-
-Route::get('/checkout', function () {
-    return view('shop.checkout');
-});
-
-
-
+// Routing Halaman Admin
 Route::middleware('auth')->prefix('admin')->group(function () {
     // Halaman Admin Dashboard
     Route::get('/', function () {
@@ -38,7 +44,5 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('product', 'ProductController')->except('show');
 });
 
-
-
-
+// Routing untuk login dan register
 Auth::routes(['reset' => false]);
