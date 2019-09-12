@@ -66,3 +66,4 @@
 
 1. Show Home Page
 2. Show Detail Product
+3. Add Product to Cart
