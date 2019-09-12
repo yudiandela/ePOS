@@ -11,7 +11,7 @@
 |
 */
 
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::middleware('auth')->group(function () {
     // Halaman Admin Dashboard
     Route::get('/', function () {
         return view('admin.dashboard');

@@ -1,5 +1,18 @@
 @extends('layouts.MasterAdmin')
 @section('content')
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Ubah Kategori
+    <small>update Category</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="{{ route('index') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="{{ route('category.index') }}">Category</a></li>
+    <li class="active">update Category</li>
+  </ol>
+</section>
+
  <section class="content">
 	<div class="row">
 		<!-- left column -->
