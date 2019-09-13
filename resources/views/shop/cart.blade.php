@@ -81,6 +81,12 @@
                                           </tr>
 
                                         @endforeach
+                                    @else
+                                    <tr>
+                                      <td colspan="6" class="text-center">
+                                        Belum ada daftar belanjaan
+                                      </td>
+                                    </tr>
                                     @endif
 
 
@@ -123,9 +129,9 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button class="btn btn-lg btn-block btn-round btn-d" onclick="window.location.href='/checkout' " type="submit">Proceed to
-                                  Checkout
-                                </button>
+                                <a href="{{ route('shop.checkout') }}" class="btn btn-lg btn-block btn-round btn-d btn-primary @if (!session('cart')) {{ 'disabled' }} @endif">
+                                  Proceed to Checkout
+                                </a>
                             </div>
                         </div>
                     </div>

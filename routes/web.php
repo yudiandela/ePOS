@@ -18,22 +18,23 @@ Route::name('shop.')->group(function () {
     // Halaman detail product
     Route::get('/product/{product}', 'ProductController@showDetailProductInShop')->name('detail.product');
 
+    // Halaman keranjang belanja
     Route::get('/cart', 'CartController@index')->name('cart');
     Route::post('/cart/{id}', 'CartController@addToCart')->name('add.cart');
     Route::patch('/update-cart', 'CartController@update');
     Route::delete('/remove-from-cart', 'CartController@remove');
 
-    Route::get('/checkout', function () {
-        return view('shop.checkout');
-    })->name('checkout');
+    // Halaman Checkout
+    Route::view('checkout', 'shop.checkout')->name('checkout');
+
+    // Halaman Order
+    Route::resource('order', 'OrderController')->only('store');
 });
 
 // Routing Halaman Admin
 Route::middleware('auth')->prefix('admin')->group(function () {
     // Halaman Admin Dashboard
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('index');
+    Route::view('/', 'admin.dashboard')->name('index');
 
     // CRUD Category
     Route::resource('category', 'CategoryController')->except('show');
