@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Order;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,19 +16,58 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Order $order)
     {
-        //
+        $orders = $order->where('user_id', Auth::user()->id)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('user.dashboard', compact('orders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function adminIndex(Order $order)
     {
-        //
+        $orders = $order->orderBy('id', 'DESC')->get();
+        return view('admin.v_kelola_pesanan.index_pesanan', compact('orders'));
+    }
+
+    public function adminCancel(Request $request)
+    {
+        $id = $request->id;
+
+        if ($id) {
+            $order = Order::find($id);
+            $order->status = 1;
+            $order->save();
+        }
+
+        return 1;
+    }
+
+    public function adminBack(Request $request)
+    {
+        $id = $request->id;
+
+        if ($id) {
+            $order = Order::find($id);
+            $order->status = 2;
+            $order->save();
+        }
+
+        return 1;
+    }
+
+    public function adminDelivery(Request $request)
+    {
+        $id = $request->id;
+
+        if ($request->id) {
+            $order = Order::find($id);
+            $order->status = 3;
+            $order->save();
+        }
+
+        return 1;
     }
 
     /**
@@ -48,22 +88,22 @@ class OrderController extends Controller
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'address'  => ['required', 'string', 'min:8'],
             ]);
+
+            // Daftar kan user baru ke database
+            $user = User::create([
+                'name'     => $request->name,
+                'email'    => $request->email,
+                'password' => Hash::make($request->password),
+                'address'  => $request->address,
+            ]);
+
+            // Login user
+            Auth::login($user);
         }
-
-        // Daftar kan user baru ke database
-        $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
-            'address'  => $request->address,
-        ]);
-
-        // Login user
-        Auth::login($user);
 
         $orders   = session('cart');
         $products = array_values($orders);
-        $noOrder  = 'ePOS-' . rand(6) . time();
+        $noOrder  = time();
 
         // Lakukan looping untuk session cart
         for ($i = 0; $i < count($products); $i++) {
@@ -123,8 +163,12 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Request $request)
     {
-        //
+        if ($request->id) {
+            $order = Order::findOrFail($request->id);
+            $order->delete();
+            return true;
+        }
     }
 }

@@ -104,10 +104,16 @@
             </a>
           </li> --}}
           @auth
-            <li class="nav-item mx-2">
+          <li class="nav-item mx-2">
+              @if (Auth::user()->role === 1)
               <a href="{{ route('index') }}" class="nav-link border border-primary bg-primary rounded waves-effect text-light">
                 <i class="fas fa-home"></i> Dashboard
               </a>
+              @else
+              <a href="{{ route('dashboard.user.order') }}" class="nav-link border border-primary bg-primary rounded waves-effect text-light">
+                <i class="fas fa-home"></i> Dashboard
+              </a>
+              @endif
             </li>
           @endauth
 

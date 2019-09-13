@@ -1,38 +1,41 @@
 @extends('layouts.MasterAdmin')
 @section('content')
-<!-- Content Header (Page header) -->
-<section class="content-header">
-	<h1>
-    Data Pesanan
-    <small>Order Data</small>
-	</h1>
-	<ol class="breadcrumb">
-    <li><a href="{{ route('index') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">data Pesanan</li>
-	</ol>
-</section>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Pesanan Saya
+      <small>My Order</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{ route('dashboard.user.order') }}"><i class="fa fa-dashboard"></i> User</a></li>
+      <li class="active">My Order</li>
+    </ol>
+  </section>
 
-<section class="content">
+  <section class="content">
 	<div class="row">
-		<!-- left column -->
+		{{-- col-md-12 --}}
 		<div class="col-md-12">
-			<!-- general form elements -->
-			<div class="box box-primary">
+      @if (session('status'))
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-check"></i> Berhasil!</h4>
+        {{ session('status') }}
+      </div>
+      @endif
+
+      <div class="box box-primary">
 				<div class="box">
 					<div class="box-header">
-						<h3 class="box-title">Kelola Pesanan</h3><br>
-						<div align="right" >
-							<input type="submit" class="btn btn-primary" value="Tambahkan Pesanan" name="Add">
-						</div>
-					</div>
+            <h2 class="box-title">Table Pesanan Saya</h2>
+          </div>
 
-					<!-- /.box-header -->
+          <!-- /.box-header -->
 					<div class="box-body">
 						<table id="example" class="table table-bordered table-striped">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Pelanggan</th>
                   <th>No Order</th>
                   <th>Nama Barang</th>
                   <th>Harga</th>
@@ -71,7 +74,6 @@
                   @endswitch
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $order->user->name }}</td>
                     <td>{{ $order->no_order }}</td>
                     <td>{{ $order->product->name }}</td>
                     <td>Rp. {{ number_format($order->product->price, 0, ',', '.') }}</td>
@@ -80,20 +82,19 @@
                     <td><span class='label bg-{{ $bg }}'>{{ $status }}</span></td>
                     <td>
                       <button data-id="{{ $order->id }}" class="btn btn-danger btn-xs remove-order"><i class="fa fa-times"></i></button>
-                      <button data-id="{{ $order->id }}" class="btn btn-primary btn-xs back-order"><i class="fa fa-arrow-left"></i></button>
-                      <button data-id="{{ $order->id }}" class="btn btn-success btn-xs delivery-order"><i class="fa fa-truck"></i></button>
                     </td>
                   </tr>
                 @endforeach
               </tbody>
             </table>
 					</div>
-					<!-- /.box-body -->
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+
+        </div>
+      </div>
+    </div>
+    {{-- col-md-12 --}}
+  </div>
+  {{-- row --}}
 
 @endsection
 
@@ -105,53 +106,16 @@ $(".remove-order").click(function (e) {
 
   var ele = $(this);
 
-  $.ajax({
-    url: '{{ route("admin.cancelOrder") }}',
-    method: "put",
-    data: {
-      _token: '{{ csrf_token() }}',
-      id: ele.attr("data-id")
-    },
-    success: function (response) {
-      location.reload();
-    }
-  });
-});
-
-$(".back-order").click(function (e) {
-  e.preventDefault();
-
-  var ele = $(this);
-
-  $.ajax({
-    url: '{{ route("admin.backOrder") }}',
-    method: "put",
-    data: {
-      _token: '{{ csrf_token() }}',
-      id: ele.attr("data-id")
-    },
-    success: function (response) {
-      location.reload();
-    }
-  });
-});
-
-$(".delivery-order").click(function (e) {
-  e.preventDefault();
-
-  var ele = $(this);
-
-  $.ajax({
-    url: '{{ route("admin.deliveryOrder") }}',
-    method: "put",
-    data: {
-      _token: '{{ csrf_token() }}',
-      id: ele.attr("data-id")
-    },
-    success: function (response) {
-      location.reload();
-    }
-  });
+  if(confirm("Kamu yakin?")) {
+    $.ajax({
+      url: '{{ route("dashboard.user.destroyOrder") }}',
+      method: "DELETE",
+      data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
+      success: function (response) {
+        location.reload();
+      }
+    });
+  }
 });
 </script>
 @endpush

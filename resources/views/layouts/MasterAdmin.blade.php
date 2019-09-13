@@ -61,7 +61,7 @@
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
             <!-- Messages: style can be found in dropdown.less-->
-            <li class="dropdown messages-menu">
+            {{-- <li class="dropdown messages-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-shopping-cart"></i>
                 <span class="label label-success">4</span>
@@ -111,7 +111,7 @@
                 </li>
                 <li class="footer"><a href="#">See All Messages</a></li>
               </ul>
-            </li>
+            </li> --}}
             <!-- Notifications: style can be found in dropdown.less -->
             {{-- <li class="dropdown notifications-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -233,7 +233,7 @@
       </ul>
     </li> --}}
     <!-- User Account: style can be found in dropdown.less -->
-    <li class="dropdown user user-menu">
+    {{-- <li class="dropdown user user-menu">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
         <span class="hidden-xs">{{ Auth::user()->name }}</span>
@@ -249,7 +249,7 @@
           </p>
         </li>
         <!-- Menu Body -->
-        {{-- <li class="user-body">
+        <li class="user-body">
           <div class="row">
             <div class="col-xs-4 text-center">
               <a href="#">Followers</a>
@@ -262,11 +262,11 @@
             </div>
           </div>
           <!-- /.row -->
-        </li> --}}
+        </li>
         <!-- Menu Footer-->
         <li class="user-footer">
           <div class="pull-left">
-            {{-- <a href="#" class="btn btn-default btn-flat">Profile</a> --}}
+            <a href="#" class="btn btn-default btn-flat">Profile</a>
           </div>
           <div class="pull-right">
             <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
@@ -280,6 +280,16 @@
           </div>
         </li>
       </ul>
+    </li> --}}
+    <li class="user user-menu">
+      <a href="{{ route('logout') }}" class="btn btn-primary btn-flat"
+        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        Sign out <i class="fa fa-sign-out"></i>
+      </a>
+
+      <form hidden id="logout-form" action="{{ route('logout') }}" method="post">
+        @csrf
+      </form>
     </li>
     <!-- Control Sidebar Toggle Button -->
 
@@ -315,40 +325,49 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
-      <li >
-      <a href="{{ route('index') }}">
-        <i class="fa fa-home"></i> <span>Dashboard</span>
-      </a>
-    </li>
-  <li class="">
-    <a href="{{ route('product.index') }}">
-      <i class="fa fa-archive"></i> <span>Kelola Barang</span>
-      </a>
-  </li>
-  <li class="">
-    <a href="{{ route('category.index') }}">
-      <i class="fa fa-folder-o"></i> <span>Kelola Kategori</span>
-      </a>
-  </li>
-  {{-- <li class="">
-      <a href="/order">
-        <i class="fa fa-users"></i> <span>Kelola Pesanan</span>
-        </a>
-    </li> --}}
+      @if (Auth::user()->role === 1)
+        <li>
+          <a href="{{ route('index') }}">
+            <i class="fa fa-home"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="{{ route('product.index') }}">
+            <i class="fa fa-archive"></i> <span>Kelola Barang</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="{{ route('category.index') }}">
+            <i class="fa fa-folder-o"></i> <span>Kelola Kategori</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="{{ route('user.index') }}">
+            <i class="fa fa-users"></i> <span>Kelola Pelanggan</span>
+          </a>
+        </li>
+        <li class="">
+          <a href="{{ route('admin.order') }}">
+            <i class="fa fa-folder"></i> <span>Kelola Pesanan</span>
+          </a>
+        </li>
+      @else
       <li class="">
-      <a href="{{ route('user.index') }}">
-        <i class="fa fa-users"></i> <span>Kelola Pelanggan</span>
+        <a href="{{ route('dashboard.user.order') }}">
+          <i class="fa fa-folder"></i> <span>Pesanan Saya</span>
         </a>
-    </li>
-  <li class="treeview">
-    <a href="#">
-      <i class="fa fa-paper-plane-o"></i> <span>Laporan</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
-    </a>
+      </li>
+      @endif
 
-  </li>
+      {{-- <li class="treeview">
+        <a href="#">
+          <i class="fa fa-paper-plane-o"></i> <span>Laporan</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+
+      </li> --}}
 </ul>
 </section>
 <!-- /.sidebar -->
@@ -619,5 +638,7 @@
     })
   })
 </script> -->
+
+@stack('scripts')
 </body>
 </html>

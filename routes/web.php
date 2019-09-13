@@ -32,18 +32,35 @@ Route::name('shop.')->group(function () {
 });
 
 // Routing Halaman Admin
-Route::middleware('auth')->prefix('admin')->group(function () {
-    // Halaman Admin Dashboard
-    Route::view('/', 'admin.dashboard')->name('index');
+Route::middleware('auth')->group(function () {
 
-    // CRUD Category
-    Route::resource('category', 'CategoryController')->except('show');
+    // Routing halaman dengan URL user
+    Route::prefix('user')->name('dashboard.')->group(function () {
+        Route::view('/', 'user.dashboard')->name('user.index');
+        Route::get('/order', 'OrderController@index')->name('user.order');
+        Route::delete('/order-delete', 'OrderController@destroy')->name('user.destroyOrder');
+    });
 
-    // CRUD Product
-    Route::resource('product', 'ProductController')->except('show');
+    // Routing halaman dengan URL admin
+    Route::prefix('admin')->group(function () {
+        // Halaman Admin Dashboard
+        Route::view('/', 'admin.dashboard')->name('index');
 
-    // CRUD Users
-    Route::resource('user', 'UserController')->except('show');
+        // CRUD Category
+        Route::resource('category', 'CategoryController')->except('show');
+
+        // CRUD Product
+        Route::resource('product', 'ProductController')->except('show');
+
+        // CRUD Users
+        Route::resource('user', 'UserController')->except('show');
+
+        // CRUD Order
+        Route::get('order', 'OrderController@adminIndex')->name('admin.order');
+        Route::put('order/back-order', 'OrderController@adminBack')->name('admin.backOrder');
+        Route::put('order/delivery-order', 'OrderController@adminDelivery')->name('admin.deliveryOrder');
+        Route::put('order/cancel-order', 'OrderController@adminCancel')->name('admin.cancelOrder');
+    });
 });
 
 // Routing untuk login dan register

@@ -27,107 +27,106 @@
 
           <!--Card-->
           <div class="card">
+              <!--Card content-->
+              <form class="card-body" action="{{ route('shop.order.store') }}" method="POST">
 
-            <!--Card content-->
-            <form class="card-body" action="{{ route('shop.order.store') }}" method="POST">
+                @csrf
 
-              @csrf
+                @if (!Auth::check())
+                <!--Grid row-->
+                <div class="row mb-2">
 
-              <!--Grid row-->
-              <div class="row mb-2">
+                  <!--Grid column-->
+                  <div class="col-md-6">
 
-                <!--Grid column-->
-                <div class="col-md-6">
+                    <!--firstName-->
+                    <div class="md-form ">
+                      <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="@auth{{ Auth::user()->name ? Auth::user()->name : '' }}@else{{ old('name') ? old('name') : '' }}@endauth">
+                      <label for="name">Nama Lengkap</label>
+                      @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
+                    </div>
 
-                  <!--firstName-->
-                  <div class="md-form ">
-                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="@auth{{ Auth::user()->name ? Auth::user()->name : '' }}@else{{ old('name') ? old('name') : '' }}@endauth">
-                    <label for="name">Nama Lengkap</label>
-                    @error('name')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                   </div>
+                  <!--Grid column-->
+
+                  <!--Grid column-->
+                  <div class="col-md-6">
+
+                    <!--email-->
+                    <div class="md-form">
+                      <input name="email" type="email" id="email" class="form-control @error('email') is-invalid @enderror" value="@auth{{ Auth::user()->email ? Auth::user()->email : '' }}@else{{ old('email') ? old('email') : '' }}@endauth">
+                      <label for="email">Alamat Email</label>
+                      @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
+                    </div>
+
+                  </div>
+                  <!--Grid column-->
 
                 </div>
-                <!--Grid column-->
+                <!--Grid row-->
 
-                <!--Grid column-->
-                <div class="col-md-6">
+                <!--Grid row-->
+                <div class="row mb-2">
 
-                  <!--email-->
-                  <div class="md-form">
-                    <input name="email" type="email" id="email" class="form-control @error('email') is-invalid @enderror" value="@auth{{ Auth::user()->email ? Auth::user()->email : '' }}@else{{ old('email') ? old('email') : '' }}@endauth">
-                    <label for="email">Alamat Email</label>
-                    @error('email')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                  <!--Grid column-->
+                  <div class="col-md-6">
+
+                    <!--firstName-->
+                    <div class="md-form ">
+                      <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror">
+                      <label for="password">Password</label>
+                      @error('password')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
+                    </div>
+
                   </div>
+                  <!--Grid column-->
+
+                  <!--Grid column-->
+                  <div class="col-md-6">
+
+                    <!--email-->
+                    <div class="md-form">
+                      <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                      <label for="password_confirmation">Password Confirm</label>
+                    </div>
+
+                  </div>
+                  <!--Grid column-->
 
                 </div>
-                <!--Grid column-->
+                <!--Grid row-->
 
-              </div>
-              <!--Grid row-->
+                <!--Grid row-->
+                <div class="row mb-2">
 
-              <!--Grid row-->
-              <div class="row mb-2">
+                  <!--Grid column-->
+                  <div class="col-md-12">
 
-                <!--Grid column-->
-                <div class="col-md-6">
+                    <!--address-->
+                    <div class="md-form">
+                      <input type="text" id="address" name="address" class="form-control">
+                      <label for="address">Alamat Lengkap <small>(Digunakan untuk pengiriman)</small></label>
+                      @error('address')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
+                    </div>
 
-                  <!--firstName-->
-                  <div class="md-form ">
-                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror">
-                    <label for="password">Password</label>
-                    @error('password')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                   </div>
+                  <!--Grid column-->
 
                 </div>
-                <!--Grid column-->
+                <!--Grid row-->
+                @endif
 
-                <!--Grid column-->
-                <div class="col-md-6">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
 
-                  <!--email-->
-                  <div class="md-form">
-                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
-                    <label for="password_confirmation">Password Confirm</label>
-                  </div>
-
-                </div>
-                <!--Grid column-->
-
-              </div>
-              <!--Grid row-->
-
-              <!--Grid row-->
-              <div class="row mb-2">
-
-                <!--Grid column-->
-                <div class="col-md-12">
-
-                  <!--address-->
-                  <div class="md-form">
-                    <input type="text" id="address" name="address" class="form-control">
-                    <label for="address">Alamat Lengkap <small>(Digunakan untuk pengiriman)</small></label>
-                    @error('address')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                  </div>
-
-                </div>
-                <!--Grid column-->
-
-              </div>
-              <!--Grid row-->
-
-              <hr>
-
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-
-            </form>
+              </form>
 
           </div>
           <!--/.Card-->
