@@ -112,17 +112,19 @@
           @endauth
 
           @guest
-          <li class="nav-item mx-2">
-            <a href="{{ route('login') }}" class="nav-link border border-primary rounded waves-effect text-primary">
-              <i class="fas fa-sign-in-alt"></i> Login
-            </a>
-          </li>
+            <li class="nav-item mx-2">
+              <a href="{{ route('login') }}" class="nav-link border border-primary rounded waves-effect text-primary">
+                <i class="fas fa-sign-in-alt"></i> Login
+              </a>
+            </li>
 
-          <li class="nav-item mx-2">
-            <a href="{{ route('register') }}" class="nav-link border border-primary bg-primary rounded waves-effect text-light">
-              <i class="fas fa-user"></i> new User
-            </a>
-          </li>
+            @if (Route::has('register'))
+              <li class="nav-item mx-2">
+                <a href="{{ route('register') }}" class="nav-link border border-primary bg-primary rounded waves-effect text-light">
+                  <i class="fas fa-user"></i> new User
+                </a>
+              </li>
+            @endif
           @endguest
         </ul>
 

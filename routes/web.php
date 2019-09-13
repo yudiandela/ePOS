@@ -47,4 +47,4 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 });
 
 // Routing untuk login dan register
-Auth::routes(['reset' => false]);
+Auth::routes(['register' => false, 'reset' => false]);
