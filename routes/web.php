@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Routing halaman dengan URL admin
-    Route::prefix('admin')->group(function () {
+    Route::middleware('admin')->prefix('admin')->group(function () {
         // Halaman Admin Dashboard
         Route::view('/', 'admin.dashboard')->name('index');
 
