@@ -63,4 +63,4 @@ Route::middleware('auth')->group(function () {
 });
 
 // Routing untuk login dan register
-Auth::routes(['register' => false, 'reset' => false]);
+Auth::routes(['reset' => false]);
