@@ -61,9 +61,11 @@
 1. Management Category
 2. Management Product
 3. Management User / Pelanggan
+4. Management Order from User
 
 ### Shop / User
 
 1. Show Home Page
 2. Show Detail Product
 3. Add Product to Cart
+4. Check or Cancel Order
