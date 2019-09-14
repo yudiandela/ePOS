@@ -36,7 +36,6 @@ Route::middleware('auth')->group(function () {
 
     // Routing halaman dengan URL user
     Route::prefix('user')->name('dashboard.')->group(function () {
-        Route::view('/', 'user.dashboard')->name('user.index');
         Route::get('/order', 'OrderController@index')->name('user.order');
         Route::delete('/order-delete', 'OrderController@destroy')->name('user.destroyOrder');
     });

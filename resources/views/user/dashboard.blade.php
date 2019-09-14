@@ -13,88 +13,89 @@
   </section>
 
   <section class="content">
-	<div class="row">
-		{{-- col-md-12 --}}
-		<div class="col-md-12">
-      @if (session('status'))
-      <div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa fa-check"></i> Berhasil!</h4>
-        {{ session('status') }}
-      </div>
-      @endif
+    <div class="row">
+      {{-- col-md-12 --}}
+      <div class="col-md-12">
+        @if (session('status'))
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <h4><i class="icon fa fa-check"></i> Berhasil!</h4>
+          {{ session('status') }}
+        </div>
+        @endif
 
-      <div class="box box-primary">
-				<div class="box">
-					<div class="box-header">
-            <h2 class="box-title">Table Pesanan Saya</h2>
-          </div>
+        <div class="box box-primary">
+          <div class="box">
+            <div class="box-header">
+              <h2 class="box-title">Table Pesanan Saya</h2>
+            </div>
 
-          <!-- /.box-header -->
-					<div class="box-body">
-						<table id="example" class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>No Order</th>
-                  <th>Nama Barang</th>
-                  <th>Harga</th>
-                  <th>Jlh</th>
-                  <th>Total</th>
-                  <th>Status</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($orders as $order)
-                  @switch($order->status)
-                    @case(0)
-                      @php
-                        $status = "Proses";
-                        $bg = "yellow";
-                      @endphp
-                      @break
-                    @case(1)
-                      @php
-                        $status = "Batalkan";
-                        $bg = "red";
-                      @endphp
-                      @break
-                    @case(2)
-                      @php
-                        $status = "Kembalikan";
-                        $bg = "blue";
-                      @endphp
-                      @break
-                    @default
-                      @php
-                        $status = "Teruskan";
-                        $bg = "green";
-                      @endphp
-                  @endswitch
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example" class="table table-bordered table-striped">
+                <thead>
                   <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $order->no_order }}</td>
-                    <td>{{ $order->product->name }}</td>
-                    <td>Rp. {{ number_format($order->product->price, 0, ',', '.') }}</td>
-                    <td>{{ $order->quantity }}</td>
-                    <td>Rp. {{ number_format($order->quantity * $order->product->price, 0, ',', '.') }}</td>
-                    <td><span class='label bg-{{ $bg }}'>{{ $status }}</span></td>
-                    <td>
-                      <button data-id="{{ $order->id }}" class="btn btn-danger btn-xs remove-order"><i class="fa fa-times"></i></button>
-                    </td>
+                    <th>#</th>
+                    <th>No Order</th>
+                    <th>Nama Barang</th>
+                    <th>Harga</th>
+                    <th>Jlh</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th></th>
                   </tr>
-                @endforeach
-              </tbody>
-            </table>
-					</div>
+                </thead>
+                <tbody>
+                  @foreach ($orders as $order)
+                    @switch($order->status)
+                      @case(0)
+                        @php
+                          $status = "Proses";
+                          $bg = "yellow";
+                        @endphp
+                        @break
+                      @case(1)
+                        @php
+                          $status = "Batalkan";
+                          $bg = "red";
+                        @endphp
+                        @break
+                      @case(2)
+                        @php
+                          $status = "Kembalikan";
+                          $bg = "blue";
+                        @endphp
+                        @break
+                      @default
+                        @php
+                          $status = "Teruskan";
+                          $bg = "green";
+                        @endphp
+                    @endswitch
+                    <tr>
+                      <td>{{ $loop->iteration }}</td>
+                      <td>{{ $order->no_order }}</td>
+                      <td>{{ $order->product->name }}</td>
+                      <td>Rp. {{ number_format($order->product->price, 0, ',', '.') }}</td>
+                      <td>{{ $order->quantity }}</td>
+                      <td>Rp. {{ number_format($order->quantity * $order->product->price, 0, ',', '.') }}</td>
+                      <td><span class='label bg-{{ $bg }}'>{{ $status }}</span></td>
+                      <td>
+                        <button data-id="{{ $order->id }}" class="btn btn-danger btn-xs remove-order"><i class="fa fa-times"></i></button>
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
 
+          </div>
         </div>
       </div>
+      {{-- col-md-12 --}}
     </div>
-    {{-- col-md-12 --}}
-  </div>
   {{-- row --}}
+  </section>
 
 @endsection
 
