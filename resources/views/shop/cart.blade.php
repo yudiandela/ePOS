@@ -16,7 +16,7 @@
                     <hr class="divider-w pt-20">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table class="table table-striped table-border checkout-table">
+                            <table class="table checkout-table">
                               <thead>
                                 <tr>
                                     <th class="hidden-xs">Item</th>
@@ -59,7 +59,7 @@
                                             <tr>
                                               <td class="hidden-xs">
                                                 <a href="#">
-                                                  <img height="100px" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" alt="{{ $details['name'] }}">
+                                                  <img height="100px" src="{{ $details['photo'] }}" alt="{{ $details['name'] }}">
                                                 </a>
                                               </td>
                                               <td>

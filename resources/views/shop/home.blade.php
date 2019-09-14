@@ -17,7 +17,7 @@
 
       <!--First slide-->
       <div class="carousel-item active">
-        <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
+        <div class="view" style="background-image: url('/images/product/power-supply-gamemax-650watt-psu-gp650-80-plus-bronze-14cm-fan.jpg'); background-repeat: no-repeat; background-size: contain; background-position: center;">
 
           <!-- Mask & flexbox options-->
           <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
@@ -25,7 +25,7 @@
             <!-- Content -->
             <div class="text-center white-text mx-5 wow fadeIn">
               <h1 class="mb-4">
-                <strong>Kami Hadir Dengan Produk Produk Baju</strong>
+                <strong>Kami Hadir Dengan Produk Elektronik</strong>
               </h1>
 
               <p>
@@ -36,7 +36,7 @@
                 <strong>Online shop segala di jual</strong>
               </p>
 
-              <a target="_blank" href="#" class="btn btn-outline-white btn-lg">Belanja Sekrang
+              <a target="_blank" href="#" class="btn btn-outline-white btn-lg">Belanja Sekarang
 
               </a>
             </div>
@@ -51,7 +51,7 @@
 
       <!--Second slide-->
       <div class="carousel-item">
-        <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg'); background-repeat: no-repeat; background-size: cover;">
+        <div class="view" style="background-image: url('/images/product/digital-alliance-n5-black-transparent-window-micro-atx-gaming-chassis.jpg'); background-repeat: no-repeat; background-size: contain;">
 
           <!-- Mask & flexbox options-->
           <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
@@ -59,7 +59,7 @@
             <!-- Content -->
             <div class="text-center white-text mx-5 wow fadeIn">
               <h1 class="mb-4">
-                <strong>Produk Tas</strong>
+                <strong>DIGITAL ALLIANCE GAMING CHASSIS</strong>
               </h1>
 
               <p>
@@ -70,7 +70,7 @@
                 <strong>Online shop segala di jual</strong>
               </p>
 
-              <a target="_blank" href="#" class="btn btn-outline-white btn-lg">Belanja Sekrang
+              <a target="_blank" href="#" class="btn btn-outline-white btn-lg">Belanja Sekarang
 
               </a>
             </div>
@@ -85,7 +85,7 @@
 
       <!--Third slide-->
       <div class="carousel-item">
-        <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg'); background-repeat: no-repeat; background-size: cover;">
+        <div class="view" style="background-image: url('/images/product/gigabyte-z390-m-gaming-lga-1151-motherboard.jpg'); background-repeat: no-repeat; background-size: contain; background-position: right;">
 
           <!-- Mask & flexbox options-->
           <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
@@ -93,7 +93,7 @@
             <!-- Content -->
            <div class="text-center white-text mx-5 wow fadeIn">
               <h1 class="mb-4">
-                <strong>Produk Celana</strong>
+                <strong>GIGABYTE Z390 M GAMING LGA 1151 MOTHERBOARD</strong>
               </h1>
 
               <p>
@@ -104,7 +104,7 @@
                 <strong>Online shop segala di jual</strong>
               </p>
 
-              <a target="_blank" href="#" class="btn btn-outline-white btn-lg">Belanja Sekrang
+              <a target="_blank" href="#" class="btn btn-outline-white btn-lg">Belanja Sekarang
 
               </a>
             </div>
@@ -135,11 +135,11 @@
   <!--/.Carousel Wrapper-->
 
   <!--Main layout-->
-  <main>
+  <main class="mt-5">
     <div class="container">
 
       <!--Navbar-->
-      <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+      {{-- <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
         <!-- Navbar brand -->
         <span class="navbar-brand">Categories:</span>
@@ -181,7 +181,7 @@
         </div>
         <!-- Collapsible content -->
 
-      </nav>
+      </nav> --}}
       <!--/.Navbar-->
 
       <!--Section: Products v.3-->
@@ -198,8 +198,7 @@
 
                 <!--Card image-->
                 <div class="view overlay">
-                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
-                    alt="">
+                    <img src="{{ $product->photo }}" class="card-img-top" alt="">
                     <a href="{{ route('shop.detail.product', $product->id) }}">
                     <div class="mask rgba-white-slight"></div>
                     </a>

@@ -11,7 +11,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
           <h4>{{ $product->name }}</h4>
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+          <img src="{{ $product->photo }}" class="img-fluid" alt="">
 
         </div>
         <!--Grid column-->
